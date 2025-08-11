@@ -1,36 +1,91 @@
+:root {
+    /* Primary text & backgrounds */
+    --text: #111111;
+    /* Main text color */
+    --bg: #FFFFFF;
+
+    /* Grays for minimalism */
+    --muted: #6B7280;
+    /* Secondary text */
+    --surface: #F3F4F6;
+    /* Light surface background */
+    --border: #E5E7EB;
+    /* Light borders/dividers */
+
+    /* Accent blues */
+    --accent: #2563EB;
+    /* Main accent (buttons, links) */
+    --accent-hover: #1E40AF;
+    /* Accent hover state */
+    --accent-soft: #E8F0FE;
+    /* Soft accent background */
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
 header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding-top: 25px;
-    padding-bottom: 150px;
+    padding-bottom: 25px;
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--border);
 }
 
-header div {
-    padding-left: 15px;
+#left-nav {
+    padding-left: 50px;
+    color: var(--text);
 }
 
-header nav {
-    padding-right: 15px;
-}
-
-nav a {
-    padding-left: 10px;
+#right-nav {
+    padding-right: 50px;
     text-decoration: none;
-    color: black;
+}
+
+#right-nav a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+#center-nav a {
+    text-decoration: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: var(--text);
+}
+
+#center-nav a:hover {
+    text-decoration: underline;
 }
 
 #welcome-message {
     display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    padding-left: 150px;
-    padding-bottom: 100px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 200px
+}
+
+#welcome-left {
+    padding-left: 300px;
+}
+
+#welcome-right img {
+    width: 50px;
+    height: 50px;
+    padding-right: 450px;
 }
 
 footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 150px;
+    padding-top: 300px;
+}
+
+body {
+    background-color: 0F172A;
 }
