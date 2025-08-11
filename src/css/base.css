@@ -1,0 +1,36 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 25px;
+    padding-bottom: 150px;
+}
+
+header div {
+    padding-left: 15px;
+}
+
+header nav {
+    padding-right: 15px;
+}
+
+nav a {
+    padding-left: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+#welcome-message {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-left: 150px;
+    padding-bottom: 100px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 150px;
+}
