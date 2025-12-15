@@ -55,7 +55,21 @@ header {
 }
 #right-nav a {
   font-weight: 600;
+  background-color: var(--accent);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
 }
+
+#right-nav a:hover {
+  background-color: var(--accent-hover); /* slightly darker shade */
+  transform: translateY(-2px); /* lift effect */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
 #center-nav a {
   font-weight: 500;
   padding: 0 15px;
@@ -229,14 +243,18 @@ header {
   padding: 0.8rem 1.4rem;
   background: var(--accent);
   color: #fff;
-  border-radius: 10px;
-  text-decoration: none;
+  border-radius: 9999px;
   font-family: var(--font-primary);
-  font-weight: 500;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
 }
 
 #welcome-booking a:hover {
   background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Footer */
