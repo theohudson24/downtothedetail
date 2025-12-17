@@ -7,66 +7,70 @@
     <link rel="stylesheet" href="css/base.css" />
   </head>
   <body>
-    <header>
-      <div id="left-nav">
-        <a href="index.html">DownToTheDetail</a>
-      </div>
-      <nav id="center-nav">
+    <header class="site-header">
+      <a class="brand" href="index.html">DownToTheDetail</a>
+      <nav class="nav-links" aria-label="Primary">
         <a href="services.html">Services</a>
         <a href="membership.html">Membership</a>
         <a href="gallery.html">Gallery</a>
         <a href="about.html">About</a>
       </nav>
-      <div id="right-nav"><a href="booking.html">Booking</a></div>
+      <a class="btn" href="booking.html">Booking</a>
     </header>
 
     <main>
-      <div id="center-welcome">
-        <img src="/src/img/welcome_img.JPG" alt="BMW M340i detail hero" />
-        <div id="center-welcome-text">
-          <h2>Welcome To DownToTheDetail</h2>
-          <p>Your car deserves the best. Book a detail today.</p>
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero__media"
+          src="img/welcome_img.JPG"
+          alt="BMW M340i detail hero"
+        />
+        <div class="hero__content">
+          <h1 id="hero-title" class="hero__title">Welcome To DownToTheDetail</h1>
+          <p class="hero__subtitle">
+            Your car deserves the best. Book a detail today.
+          </p>
         </div>
-      </div>
+      </section>
 
-      <div id="process-container">
-        <h2>Getting Down To Every Detail, How We Do It!</h2>
-        <div class="process-steps">
-          <div class="step">
+      <section class="process" aria-labelledby="process-title">
+        <h2 id="process-title" class="section-title">
+          Getting Down To Every Detail, How We Do It!
+        </h2>
+        <div class="process__steps">
+          <article class="step">
             <span class="badge">Step 1</span>
-            <img
-              src="/src/img/exteriorw_img.jpg"
-              alt="Step 1 - Exterior Wash"
-            />
+            <img src="img/exteriorw_img.jpg" alt="Step 1 - Exterior Wash" />
             <h3>1. Exterior Wash</h3>
             <p>Gentle hand wash for a spotless, showroom finish.</p>
-          </div>
-          <div class="step">
+          </article>
+          <article class="step">
             <span class="badge">Step 2</span>
-            <img
-              src="/src/img/interiorw_img.jpg"
-              alt="Step 2 - Interior Clean"
-            />
+            <img src="img/interiorw_img.jpg" alt="Step 2 - Interior Clean" />
             <h3>2. Interior Clean</h3>
             <p>Deep clean of seats, carpets, and every surface.</p>
-          </div>
-          <div class="step">
+          </article>
+          <article class="step">
             <span class="badge">Step 3</span>
-            <img src="/src/img/protection_img.jpg" alt="Step 3 - Protection" />
+            <img src="img/protection_img.jpg" alt="Step 3 - Protection" />
             <h3>3. Protection</h3>
             <p>Seal and protect your finish for months.</p>
-          </div>
+          </article>
         </div>
-      </div>
+      </section>
 
-      <div id="welcome-booking">
-        <h2>Ready to bring your car back to life?</h2>
-        <p>Book your appointment today and enjoy a hassle-free experience.</p>
-        <a href="booking.html">Book Now</a>
-      </div>
+      <section class="cta" aria-labelledby="cta-title">
+        <h2 id="cta-title" class="section-title">
+          Ready to bring your car back to life?
+        </h2>
+        <p class="cta__subtitle">
+          Book your appointment today and enjoy a hassle-free experience.
+        </p>
+        <a class="btn btn--lg" href="booking.html">Book Now</a>
+      </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
       <p>&copy; 2025 Down To The Detail. All rights reserved.</p>
     </footer>
 
