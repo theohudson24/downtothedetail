@@ -4,143 +4,144 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gallery | Down To The Detail</title>
+    <meta
+      name="description"
+      content="See recent detailing work and the type of finish Down To The Detail aims for across exterior, interior, and protection services."
+    />
     <link rel="stylesheet" href="css/base.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="index.html">DownToTheDetail</a>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="services.html">Services</a>
-        <a href="membership.html">Membership</a>
-        <a href="gallery.html" aria-current="page">Gallery</a>
-        <a href="about.html">About</a>
-      </nav>
-      <a class="btn" href="booking.html">Booking</a>
-    </header>
-
-    <main>
-      <section class="gallery-hero" aria-labelledby="gallery-title">
-        <div class="gallery-hero__text">
-          <p class="eyebrow">Showroom Results</p>
-          <h1 id="gallery-title" class="section-title">
-            High gloss finishes that stop traffic
-          </h1>
-          <p>
-            From weekend cruisers to daily drivers, every vehicle leaves our
-            shop with a deep mirror finish, crisp details, and a hydrophobic
-            shield that lasts. Explore recent work below to see the difference
-            Down To The Detail makes.
-          </p>
-          <a class="btn btn--lg" href="booking.html">Book Your Detail</a>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="page-shell">
+      <header class="site-header" data-site-header>
+        <div class="site-header__inner">
+          <a class="brand" href="index.html" aria-label="Down To The Detail home">
+            <span class="brand__name">Down To The Detail</span>
+            <span class="brand__tag">Premium Auto Detailing</span>
+          </a>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            data-nav-toggle
+          >
+            <span class="nav-toggle__bar"></span>
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <div class="nav-wrap" id="site-nav" data-nav-wrap>
+            <nav class="nav-links" aria-label="Primary">
+              <a href="services.html">Services</a>
+              <a href="membership.html">Membership</a>
+              <a href="gallery.html" aria-current="page">Gallery</a>
+              <a href="about.html">About</a>
+            </nav>
+            <a class="btn" href="booking.html">Book a Detail</a>
+          </div>
         </div>
-        <div class="gallery-hero__stats">
-          <article>
-            <h3>250+</h3>
-            <p>Full details completed</p>
+      </header>
+
+      <main id="main-content">
+        <section class="gallery-hero" data-reveal>
+          <div class="page-hero__content">
+            <p class="eyebrow">Recent Results</p>
+            <h1 class="page-hero__title">The finish should look clean in photos, but even better in person.</h1>
+            <p class="page-hero__lede">
+              Browse a few examples of the finish, clarity, and presentation the
+              service is built to deliver across exterior, interior, and
+              protection work.
+            </p>
+            <a class="btn btn--lg" href="booking.html">Book Your Detail</a>
+          </div>
+
+          <div class="gallery-hero__stats">
+            <article>
+              <h3>Exterior</h3>
+              <p>Safe wash, gloss recovery, and protected finish</p>
+            </article>
+            <article>
+              <h3>Interior</h3>
+              <p>Cabin surfaces reset so the car feels cared for again</p>
+            </article>
+            <article>
+              <h3>Protection</h3>
+              <p>Sealants and coatings that make upkeep easier afterward</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="gallery-grid" aria-label="Featured work">
+          <article class="gallery-card" data-reveal>
+            <img src="img/welcome_img.JPG" alt="Finished vehicle after full detail" />
+            <div class="gallery-card__body">
+              <p class="eyebrow">Full Detail</p>
+              <h3>Gloss, clarity, and a proper final presentation</h3>
+              <p>
+                The goal is a finish that looks deeper, more even, and properly
+                refined from every angle.
+              </p>
+            </div>
           </article>
-          <article>
-            <h3>98%</h3>
-            <p>Clients who rebook within 3 months</p>
+
+          <article class="gallery-card" data-reveal>
+            <img src="img/protection_img.jpg" alt="Protective coating being applied to vehicle paint" />
+            <div class="gallery-card__body">
+              <p class="eyebrow">Protection</p>
+              <h3>Protection work that supports the finish after the appointment</h3>
+              <p>
+                Sealants and coating packages help preserve gloss, improve water
+                behavior, and simplify maintenance after delivery.
+              </p>
+            </div>
           </article>
-          <article>
-            <h3>24 hr</h3>
-            <p>Average turnaround time</p>
+        </section>
+
+        <section class="gallery-mosaic" aria-label="Detailing stages">
+          <article class="gallery-mosaic__card" data-reveal>
+            <img src="img/exteriorw_img.jpg" alt="Exterior wash stage of a detail" />
+            <p class="eyebrow">Exterior Reset</p>
+            <h3>Starts with a safe wash and proper wheel cleanup.</h3>
+            <p>
+              The wash stage matters because it sets up everything after it. Safe
+              contact, patient drying, and attention to the dirty areas make the
+              rest of the detail more effective.
+            </p>
           </article>
+
+          <article class="gallery-mosaic__card" data-reveal>
+            <img src="img/interiorw_img.jpg" alt="Interior cleaning stage of a detail" />
+              <p class="eyebrow">Interior Work</p>
+              <h3>Cabin cleanup that improves how the vehicle feels to use.</h3>
+              <p>
+                Daily driving shows up quickly inside the cabin, so this stage
+                focuses on the areas customers notice most every time they get in.
+              </p>
+            </article>
+
+          <article class="gallery-mosaic__card" data-reveal>
+            <img src="img/protection_img.jpg" alt="Paint protection treatment being applied" />
+              <p class="eyebrow">Finish Protection</p>
+              <h3>Protection chosen to make maintenance easier after delivery.</h3>
+              <p>
+                A quality finish should stay easier to clean and hold its gloss
+                longer between appointments.
+              </p>
+            </article>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="site-footer__inner">
+          <p>&copy; <span data-current-year>2026</span> Down To The Detail. Clean work, clear standards.</p>
+          <div class="site-footer__links">
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="booking.html">Booking</a>
+          </div>
         </div>
-      </section>
+      </footer>
+    </div>
 
-      <section class="gallery-grid" aria-label="Project gallery">
-        <article class="gallery-card">
-          <img
-            src="img/gallery01.jpg"
-            alt="Black Porsche 911 after ceramic coating"
-            loading="lazy"
-          />
-          <div class="gallery-card__body">
-            <p class="eyebrow">Ceramic Coating</p>
-            <h3>Porsche 911 Carrera S</h3>
-            <p>
-              2-stage paint correction + 5-year ceramic protection for a
-              wet-look finish.
-            </p>
-          </div>
-        </article>
-        <article class="gallery-card">
-          <img
-            src="img/gallery02.jpg"
-            alt="Range Rover interior after deep clean"
-            loading="lazy"
-          />
-          <div class="gallery-card__body">
-            <p class="eyebrow">Interior Revival</p>
-            <h3>Range Rover Sport</h3>
-            <p>
-              Steam cleaning, leather restoration, and ozone treatment for a
-              like-new cabin.
-            </p>
-          </div>
-        </article>
-        <article class="gallery-card">
-          <img
-            src="img/gallery03.jpg"
-            alt="Tesla Model Y exterior detail"
-            loading="lazy"
-          />
-          <div class="gallery-card__body">
-            <p class="eyebrow">Maintenance Detail</p>
-            <h3>Tesla Model Y</h3>
-            <p>
-              Decontamination wash, clay, and sealant to keep the satin finish
-              crisp.
-            </p>
-          </div>
-        </article>
-        <article class="gallery-card">
-          <img
-            src="img/gallery04.jpg"
-            alt="Classic Mustang paint correction"
-            loading="lazy"
-          />
-          <div class="gallery-card__body">
-            <p class="eyebrow">Restoration</p>
-            <h3>1967 Ford Mustang</h3>
-            <p>
-              Multi-stage correction rescued 50-year-old paint without respray.
-            </p>
-          </div>
-        </article>
-        <article class="gallery-card">
-          <img
-            src="img/gallery05.jpg"
-            alt="BMW X5 engine bay detail"
-            loading="lazy"
-          />
-          <div class="gallery-card__body">
-            <p class="eyebrow">Engine Detail</p>
-            <h3>BMW X5 M50i</h3>
-            <p>Degreased, dressed, and protected for a spotless engine bay.</p>
-          </div>
-        </article>
-        <article class="gallery-card">
-          <img
-            src="img/gallery06.jpg"
-            alt="Audi RS5 wheel and brake detail"
-            loading="lazy"
-          />
-          <div class="gallery-card__body">
-            <p class="eyebrow">Wheels & Calipers</p>
-            <h3>Audi RS5</h3>
-            <p>
-              Wheels removed, iron decon, and ceramic coat to keep brake dust
-              away.
-            </p>
-          </div>
-        </article>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>&copy; 2025 Down To The Detail. All rights reserved.</p>
-    </footer>
+    <script src="js/main.js"></script>
   </body>
 </html>

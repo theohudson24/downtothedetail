@@ -3,76 +3,170 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Down To The Detail</title>
+    <title>Down To The Detail | Premium Auto Detailing</title>
+    <meta
+      name="description"
+      content="Premium interior, exterior, and protection detailing with a cleaner booking flow and a more polished customer experience."
+    />
     <link rel="stylesheet" href="css/base.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="index.html">DownToTheDetail</a>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="services.html">Services</a>
-        <a href="membership.html">Membership</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="about.html">About</a>
-      </nav>
-      <a class="btn" href="booking.html">Booking</a>
-    </header>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="page-shell">
+      <header class="site-header" data-site-header>
+        <div class="site-header__inner">
+          <a class="brand" href="index.html" aria-label="Down To The Detail home">
+            <span class="brand__name">Down To The Detail</span>
+            <span class="brand__tag">Premium Auto Detailing</span>
+          </a>
 
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <img
-          class="hero__media"
-          src="img/welcome_img.JPG"
-          alt="BMW M340i detail hero"
-        />
-        <div class="hero__content">
-          <h1 id="hero-title" class="hero__title">Welcome To DownToTheDetail</h1>
-          <p class="hero__subtitle">
-            Your car deserves the best. Book a detail today.
-          </p>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            data-nav-toggle
+          >
+            <span class="nav-toggle__bar"></span>
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+
+          <div class="nav-wrap" id="site-nav" data-nav-wrap>
+            <nav class="nav-links" aria-label="Primary">
+              <a href="services.html">Services</a>
+              <a href="membership.html">Membership</a>
+              <a href="gallery.html">Gallery</a>
+              <a href="about.html">About</a>
+            </nav>
+            <a class="btn" href="booking.html">Book a Detail</a>
+          </div>
         </div>
-      </section>
+      </header>
 
-      <section class="process" aria-labelledby="process-title">
-        <h2 id="process-title" class="section-title">
-          Getting Down To Every Detail, How We Do It!
-        </h2>
-        <div class="process__steps">
-          <article class="step">
-            <span class="badge">Step 1</span>
-            <img src="img/exteriorw_img.jpg" alt="Step 1 - Exterior Wash" />
-            <h3>1. Exterior Wash</h3>
-            <p>Gentle hand wash for a spotless, showroom finish.</p>
+      <main id="main-content">
+        <section class="hero">
+          <div class="hero__content" data-reveal>
+            <p class="eyebrow">Sharp finish. Zero shortcuts.</p>
+            <h1 class="hero__title">Detailing that makes your car feel new again.</h1>
+            <p class="hero__lede">
+              Down To The Detail delivers hands-on exterior, interior, and
+              protection services built for owners who value the
+              difference. Every appointment is owner-performed, carefully paced,
+              and focused on long-term results instead of a quick shine.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--lg" href="booking.html">Start Your Booking</a>
+              <a class="btn btn--secondary btn--lg" href="services.html">View Packages</a>
+            </div>
+          </div>
+
+          <div class="hero__media" data-reveal>
+            <img src="img/welcome_img.JPG" alt="Freshly detailed vehicle in natural light" />
+          </div>
+        </section>
+
+        <section class="home-highlights" aria-label="Business highlights">
+          <article class="home-highlight" data-reveal>
+            <h3>Owner-operated service</h3>
+            <p>Every appointment is handled directly from first contact through final delivery.</p>
           </article>
-          <article class="step">
-            <span class="badge">Step 2</span>
-            <img src="img/interiorw_img.jpg" alt="Step 2 - Interior Clean" />
-            <h3>2. Interior Clean</h3>
-            <p>Deep clean of seats, carpets, and every surface.</p>
+          <article class="home-highlight" data-reveal>
+            <h3>Complete detailing care</h3>
+            <p>Interior, exterior, correction, and protection services are built into a clear menu.</p>
           </article>
-          <article class="step">
-            <span class="badge">Step 3</span>
-            <img src="img/protection_img.jpg" alt="Step 3 - Protection" />
-            <h3>3. Protection</h3>
-            <p>Seal and protect your finish for months.</p>
+          <article class="home-highlight" data-reveal>
+            <h3>Clear communication</h3>
+            <p>Expect straightforward recommendations, organized scheduling, and fast follow-up.</p>
           </article>
+        </section>
+
+        <section class="process" aria-labelledby="process-title">
+          <div class="section-intro" data-reveal>
+            <p class="eyebrow">The Process</p>
+            <h2 id="process-title" class="section-title">A cleaner experience from first rinse to final wipe-down.</h2>
+            <p class="muted-copy">
+              Every appointment follows a straightforward process designed to
+              protect the vehicle, improve the finish, and make ongoing
+              maintenance easier.
+            </p>
+          </div>
+
+          <div class="process__steps">
+            <article class="step" data-reveal>
+              <span class="badge">Step 1</span>
+              <img src="img/exteriorw_img.jpg" alt="Exterior wash in progress" />
+              <h3>Reset the exterior</h3>
+              <p>
+                Safe wash methods, wheel cleaning, and decontamination prep remove
+                the grime that dulls paint fast.
+              </p>
+            </article>
+
+            <article class="step" data-reveal>
+              <span class="badge">Step 2</span>
+              <img src="img/interiorw_img.jpg" alt="Interior cleaning in progress" />
+              <h3>Refresh the cabin</h3>
+              <p>
+                High-touch areas, glass, carpets, and trim get a focused interior
+                reset that improves how the whole car feels.
+              </p>
+            </article>
+
+            <article class="step" data-reveal>
+              <span class="badge">Step 3</span>
+              <img src="img/protection_img.jpg" alt="Paint protection treatment being applied" />
+              <h3>Lock in the finish</h3>
+              <p>
+                Sealants and protection options keep gloss up, cleanup easier, and
+                maintenance more predictable between visits.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="cta" aria-labelledby="cta-title">
+          <div class="cta__card" data-reveal>
+            <p class="eyebrow">Ready When You Are</p>
+            <h2 id="cta-title" class="section-title">Book once, or build a routine that keeps the car looking right year-round.</h2>
+            <p>
+              Start with a single appointment, or move into a maintenance plan if
+              you want the vehicle kept at a consistently high standard.
+            </p>
+            <div class="cta__actions">
+              <a class="btn btn--lg" href="booking.html">Request Booking</a>
+              <a class="btn btn--secondary btn--lg" href="membership.html">See Membership</a>
+            </div>
+          </div>
+
+          <aside class="quick-note" data-reveal>
+            <p class="eyebrow">Good Fit If</p>
+            <h3>You want a more thoughtful detail than a volume wash can deliver.</h3>
+            <p>
+              This setup is built for customers who care about paint condition,
+              cabin cleanliness, and a process that feels organized from the
+              first click.
+            </p>
+            <ul class="quick-note__list">
+              <li>You want more than a basic wash-and-go result</li>
+              <li>You care about how the vehicle feels inside and out</li>
+              <li>You want clearer communication before booking and delivery</li>
+            </ul>
+            <a class="btn btn--secondary btn--lg" href="services.html">Compare Services</a>
+          </aside>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="site-footer__inner">
+          <p>&copy; <span data-current-year>2026</span> Down To The Detail. Clean work, clear standards.</p>
+          <div class="site-footer__links">
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="booking.html">Booking</a>
+          </div>
         </div>
-      </section>
-
-      <section class="cta" aria-labelledby="cta-title">
-        <h2 id="cta-title" class="section-title">
-          Ready to bring your car back to life?
-        </h2>
-        <p class="cta__subtitle">
-          Book your appointment today and enjoy a hassle-free experience.
-        </p>
-        <a class="btn btn--lg" href="booking.html">Book Now</a>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>&copy; 2025 Down To The Detail. All rights reserved.</p>
-    </footer>
+      </footer>
+    </div>
 
     <script src="js/main.js"></script>
   </body>

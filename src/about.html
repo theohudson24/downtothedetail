@@ -3,60 +3,113 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Down To The Detail</title>
+    <title>About | Down To The Detail</title>
+    <meta
+      name="description"
+      content="Meet the owner behind Down To The Detail and learn how the business approaches premium auto detailing."
+    />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/about.css" />
   </head>
-
   <body>
-    <header class="site-header">
-      <a class="brand" href="index.html">DownToTheDetail</a>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="services.html">Services</a>
-        <a href="membership.html">Membership</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="about.html">About</a>
-      </nav>
-      <a class="btn" href="booking.html">Booking</a>
-    </header>
-
-    <main>
-      <section class="about-intro" aria-labelledby="about-title">
-        <div class="about-intro__text">
-          <h1 id="about-title" class="section-title">Meet the Owner</h1>
-          <p>
-            Hi, I’m Reiter, founder of Down To The Detail. Every vehicle I
-            detail is handled personally by me — no outsourcing, no shortcuts. I
-            bring the same care, patience, and high standards to my clients’
-            cars that I use on my own, ensuring every detail is perfect.
-          </p>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="page-shell">
+      <header class="site-header" data-site-header>
+        <div class="site-header__inner">
+          <a class="brand" href="index.html" aria-label="Down To The Detail home">
+            <span class="brand__name">Down To The Detail</span>
+            <span class="brand__tag">Premium Auto Detailing</span>
+          </a>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            data-nav-toggle
+          >
+            <span class="nav-toggle__bar"></span>
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <div class="nav-wrap" id="site-nav" data-nav-wrap>
+            <nav class="nav-links" aria-label="Primary">
+              <a href="services.html">Services</a>
+              <a href="membership.html">Membership</a>
+              <a href="gallery.html">Gallery</a>
+              <a href="about.html" aria-current="page">About</a>
+            </nav>
+            <a class="btn" href="booking.html">Book a Detail</a>
+          </div>
         </div>
+      </header>
 
-        <div class="about-intro__media">
-          <img src="img/welcome_img.JPG" alt="Owner of Down To The Detail" />
+      <main id="main-content">
+        <section class="about-intro" data-reveal>
+          <div class="about-intro__text">
+            <p class="eyebrow">Meet the Owner</p>
+            <h1 class="page-hero__title">One person, one standard, no handoff in quality.</h1>
+            <p>
+              Down To The Detail is built around direct, owner-operated work. That
+              matters because the customer experience is better when the person
+              handling the vehicle is also the person setting the standard.
+            </p>
+            <p>
+              Every car is approached with the same mindset: slow down, notice the
+              condition honestly, and do the work carefully enough that the result
+              lasts.
+            </p>
+          </div>
+
+          <div class="about-intro__media">
+            <img src="img/welcome_img.JPG" alt="Owner of Down To The Detail standing beside detailed vehicle" />
+          </div>
+        </section>
+
+        <section class="about-story" aria-labelledby="story-title">
+          <div class="about-story__card" data-reveal>
+            <p class="eyebrow">The Story</p>
+            <h2 id="story-title" class="section-title">Built from a genuine respect for vehicle care and presentation.</h2>
+            <p>
+              The business started with a genuine interest in keeping vehicles clean
+              to a higher standard than the usual quick-service approach. That grew
+              into detailing for friends, neighbors, and then into a business shaped
+              around pride in the final result.
+            </p>
+            <p>
+              The goal is simple: honest recommendations, better-looking
+              finishes, and a process customers can trust from booking through
+              delivery.
+            </p>
+          </div>
+
+          <aside class="about-story__stats" data-reveal>
+            <article>
+              <h3>Owner-led</h3>
+              <p>Every service is handled directly, so the quality stays consistent.</p>
+            </article>
+            <article>
+              <h3>Clear scope</h3>
+              <p>Customers get a better idea of what they are booking and why it fits.</p>
+            </article>
+            <article>
+              <h3>Long-term care</h3>
+              <p>The work is designed to support easier upkeep between appointments.</p>
+            </article>
+          </aside>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="site-footer__inner">
+          <p>&copy; <span data-current-year>2026</span> Down To The Detail. Clean work, clear standards.</p>
+          <div class="site-footer__links">
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="booking.html">Booking</a>
+          </div>
         </div>
-      </section>
+      </footer>
+    </div>
 
-      <section class="about-story" aria-labelledby="story-title">
-        <h2 id="story-title" class="section-title">Our Story</h2>
-        <p>
-          I grew up in California with a genuine love for cars. After buying my
-          first one, I discovered how much pride I took in keeping it spotless,
-          inside and out. Friends and neighbors began noticing the results and
-          asking me to do the same for their cars — and what started as a hobby
-          quickly grew into a passion. When I moved to Raleigh, North Carolina,
-          I decided to turn that passion into a business. That’s how Down To The
-          Detail was born: a one-person shop built on pride, quality, and
-          consistency. My goal is simple — to give every client the same level
-          of care I’d want for my own vehicle, using proven techniques,
-          professional products, and clear communication to deliver results you
-          can trust.
-        </p>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>&copy; 2025 Down To The Detail. All rights reserved.</p>
-    </footer>
+    <script src="js/main.js"></script>
   </body>
 </html>
