@@ -94,7 +94,7 @@ export default function Header() {
               Book a Detail
             </Link>
 
-            {status !== "loading" && session?.user ? (
+            {status !== "loading" && (session?.user ? (
               <>
                 <Link className="btn btn--secondary" href="/account">
                   My Account
@@ -109,7 +109,7 @@ export default function Header() {
               <Link className="btn btn--secondary" href="/login">
                 Sign In
               </Link>
-            )}
+            ))}
           </div>
         </div>
       </div>

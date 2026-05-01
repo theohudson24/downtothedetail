@@ -365,6 +365,10 @@ main > section + section {
   margin-top: clamp(68px, 8vw, 116px);
 }
 
+.membership-hero + .membership-perks {
+  margin-top: 36px;
+}
+
 /* ─── Typography ─────────────────────────────────────────────────────────── */
 
 /* Small uppercase label above headings */
@@ -405,6 +409,16 @@ main > section + section {
 .section-intro {
   max-width: 64ch;
   margin-bottom: 28px;
+}
+
+.process .section-intro {
+  max-width: 80ch;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.process .eyebrow {
+  justify-content: center;
 }
 
 /* Muted text class applied to supporting copy across all pages */
@@ -715,8 +729,10 @@ main > section + section {
 .cta__actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 14px;
   margin-top: auto;
+  width: 100%;
 }
 
 /* ─── "Good Fit If" sidebar card ─────────────────────────────────────────── */
@@ -725,7 +741,7 @@ main > section + section {
   flex-direction: column;
   align-items: flex-start;
   gap: 18px;
-  padding: 28px;
+  padding: clamp(28px, 4vw, 42px);
   border-radius: var(--radius-lg);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 243, 236, 0.88)),
@@ -788,6 +804,11 @@ main > section + section {
   min-height: 54px;
 }
 
+.cta__actions .btn,
+.quick-note .btn {
+  min-width: 220px;
+}
+
 /* ─── Page Hero Sections (services, membership, gallery, booking, about) ─── */
 .page-hero,
 .services-hero,
@@ -801,6 +822,17 @@ main > section + section {
   align-items: stretch;
 }
 
+.membership-hero {
+  width: 100%;
+  margin-left: 0;
+  transform: none;
+  grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.82fr);
+  gap: clamp(18px, 2.4vw, 30px);
+  align-items: stretch;
+  min-height: clamp(390px, calc(100vh - var(--header-height) - 150px), 520px);
+  padding: clamp(16px, 2.2vw, 28px);
+}
+
 .page-hero__title {
   font-size: clamp(2.4rem, 5vw, 4.1rem);
 }
@@ -809,6 +841,29 @@ main > section + section {
   margin: 18px 0 0;
   max-width: 60ch;
   line-height: 1.75;
+}
+
+.gallery-hero .page-hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(16px, 2vw, 22px);
+}
+
+.gallery-hero .page-hero__title {
+  max-width: 12ch;
+  font-size: clamp(2.5rem, 4.2vw, 3.55rem);
+  line-height: 1.02;
+}
+
+.gallery-hero .page-hero__lede {
+  margin: 0;
+  max-width: 50ch;
+  line-height: 1.6;
+}
+
+.gallery-hero .btn {
+  align-self: flex-start;
 }
 
 /* Sidebar panels inside page heroes */
@@ -974,7 +1029,7 @@ main > section + section {
 /* ─── Services FAQ ───────────────────────────────────────────────────────── */
 .services-faq {
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  align-items: start;
+  align-items: center;
 }
 
 .services-faq__list {
@@ -1032,17 +1087,56 @@ main > section + section {
 }
 
 /* ─── Membership Page ────────────────────────────────────────────────────── */
-.membership-price {
+.membership-hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(14px, 1.9vw, 22px);
+  min-height: 100%;
+  padding: clamp(22px, 3.4vw, 44px);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(79, 57, 34, 0.08);
+}
+
+.membership-hero__title {
+  max-width: 12ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.9rem);
+  font-weight: 700;
+  line-height: 0.98;
+}
+
+.membership-hero__lede {
+  max-width: 54ch;
+  margin: 0;
+  margin-bottom: auto;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.35vw, 1.16rem);
+  line-height: 1.65;
+}
+
+.membership-hero__footer {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 12px;
-  margin: 24px 0;
+  align-items: center;
+  gap: 18px;
+}
+
+.membership-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin: 0;
 }
 
 .membership-price__value {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
   line-height: 1;
 }
 
@@ -1051,27 +1145,112 @@ main > section + section {
   font-weight: 600;
 }
 
-.membership-hero__card ul {
-  display: grid;
-  gap: 16px;
+.membership-hero__fine-print {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
 }
 
-.membership-hero__card li {
-  display: grid;
-  gap: 4px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(79, 57, 34, 0.08);
+.membership-hero__card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(14px, 1.8vw, 20px);
+  min-height: 100%;
+  padding: clamp(22px, 3.4vw, 44px);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(29, 26, 23, 0.98), rgba(44, 37, 31, 0.94)),
+    var(--surface-dark);
+  color: #f6f1ea;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-lg);
 }
 
-.membership-hero__card li:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
+.membership-hero__badge {
+  width: fit-content;
+  padding: 0.48rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(180, 93, 47, 0.22);
+  color: #f4c0a5;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.membership-hero__card h2 {
+  max-width: 15ch;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 3.05rem);
+  line-height: 1.02;
+}
+
+.membership-hero__card p {
+  max-width: 42ch;
+  margin: 0;
+  color: rgba(246, 241, 234, 0.78);
+  line-height: 1.65;
+}
+
+.membership-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.membership-hero__stats div {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.membership-hero__stats strong {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.membership-hero__stats span {
+  color: rgba(246, 241, 234, 0.74);
+  font-weight: 700;
+}
+
+.membership-hero__scroll-link {
+  width: fit-content;
+  margin-top: auto;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom: 2px solid rgba(180, 93, 47, 0.8);
+}
+
+.membership-hero__scroll-link:hover,
+.membership-hero__scroll-link:focus-visible {
+  color: #f4c0a5;
 }
 
 .membership-perks article,
 .membership-inclusions__list article,
 .membership-compare__panel > div {
   border-radius: var(--radius-md);
+}
+
+.membership-inclusions .section-intro {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.membership-inclusions .eyebrow {
+  justify-content: center;
 }
 
 /* Side-by-side comparison panel */
@@ -1091,16 +1270,43 @@ main > section + section {
   margin: 0;
   counter-reset: booking-flow;
   display: grid;
-  gap: 14px;
+  align-content: center;
+  gap: 16px;
 }
 
 .booking-steps li {
   position: relative;
-  min-height: 44px;
-  padding-left: 52px;
-  display: flex;
-  align-items: center;
+  display: grid;
+  gap: 8px;
+  min-height: 0;
+  padding: 20px 20px 20px 76px;
+  border-radius: 22px;
+  background: rgba(246, 240, 232, 0.56);
+  border: 1px solid rgba(79, 57, 34, 0.08);
+  color: var(--text);
+}
+
+.booking-steps li span {
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.booking-steps li p {
+  margin: 0;
   color: var(--muted);
+  line-height: 1.5;
+}
+
+.booking-steps li small {
+  width: fit-content;
+  padding: 0.35rem 0.62rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* CSS counter generates the number badge before each step */
@@ -1108,11 +1314,10 @@ main > section + section {
   counter-increment: booking-flow;
   content: counter(booking-flow);
   position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
+  left: 20px;
+  top: 20px;
+  width: 40px;
+  height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1135,8 +1340,18 @@ main > section + section {
 
 .form-section,
 .booking-summary {
-  padding: clamp(24px, 4vw, 34px);
+  padding: clamp(28px, 4.5vw, 44px);
   border-radius: 28px;
+}
+
+.form-section {
+  display: grid;
+  gap: 24px;
+}
+
+.form-section h2,
+.form-section > p {
+  margin: 0;
 }
 
 /* Grid layouts for calendar, time slots, packages, and vehicle fields */
@@ -1145,11 +1360,12 @@ main > section + section {
 .booking-slots,
 .package-options {
   display: grid;
-  gap: 14px;
+  gap: 18px;
 }
 
 .form-grid {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  row-gap: 22px;
 }
 
 .booking-calendar {
@@ -1198,6 +1414,103 @@ main > section + section {
   background: #fff;
 }
 
+.condition-section {
+  gap: 26px;
+}
+
+.condition-section__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: start;
+}
+
+.condition-section__header p {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.condition-section__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  max-width: 280px;
+}
+
+.condition-section__chips span {
+  padding: 0.42rem 0.7rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.condition-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.upload-card,
+.condition-note {
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(246, 240, 232, 0.54);
+  border: 1px solid rgba(79, 57, 34, 0.1);
+}
+
+.upload-card small {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.upload-card input[type="file"] {
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.condition-note {
+  display: grid;
+  gap: 12px;
+}
+
+.condition-note strong {
+  font-size: 1rem;
+}
+
+.condition-note ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.condition-note li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.condition-note li::before {
+  content: "•";
+  position: absolute;
+  left: 7px;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.condition-notes textarea {
+  min-height: 190px;
+}
+
 /* Selectable card-style radio labels for calendar days, time slots, packages */
 .calendar-day,
 .booking-slots label,
@@ -1207,7 +1520,7 @@ main > section + section {
   align-items: center;
   gap: 12px;
   min-height: 64px;
-  padding: 1rem;
+  padding: 1.15rem;
   border: 1px solid rgba(79, 57, 34, 0.12);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.72);
@@ -1252,11 +1565,21 @@ main > section + section {
 
 .package-card {
   align-items: start;
+  min-height: 138px;
+  padding: 1.35rem;
 }
 
 .package-card span {
   display: grid;
-  gap: 4px;
+  gap: 8px;
+}
+
+.package-card strong {
+  line-height: 1.18;
+}
+
+.package-card small {
+  line-height: 1.45;
 }
 
 /* Sticky sidebar stays visible while the form scrolls */
@@ -1731,6 +2054,33 @@ main > section + section {
   }
 
   .hero__content {
+    max-width: none;
+  }
+
+  .membership-hero {
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+    min-height: 0;
+  }
+
+  .membership-hero__title {
+    max-width: none;
+  }
+
+  .membership-hero__lede,
+  .membership-hero__scroll-link {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .condition-section__header,
+  .condition-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .condition-section__chips {
+    justify-content: flex-start;
     max-width: none;
   }
 

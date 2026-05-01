@@ -13,8 +13,11 @@
      for users with JavaScript disabled.
 
   2. Sets up an IntersectionObserver that watches every [data-reveal] element
-     and adds "is-visible" when it scrolls into the viewport (at the 18%
-     threshold), triggering the CSS transition.
+     and adds "is-visible" when it scrolls into the viewport, triggering the
+     CSS transition.
+
+  3. Sets up a MutationObserver so Fast Refresh and client-side route updates
+     can safely add new [data-reveal] elements without leaving them hidden.
 
   Why usePathname as a dependency?
   In Next.js App Router the layout stays mounted between page navigations —
@@ -33,28 +36,68 @@ export default function ClientInit() {
     // Step 1: enable the CSS reveal rules by marking the document as JS-capable
     document.documentElement.classList.add("js");
 
-    // Step 2: find all reveal targets on the current page
-    const revealItems = document.querySelectorAll<Element>("[data-reveal]");
-    if (revealItems.length === 0) return;
+    const observedItems = new WeakSet<Element>();
+    const visibleClass = "is-visible";
 
-    const observer = new IntersectionObserver(
+    const revealImmediatelyIfVisible = (item: Element) => {
+      const rect = item.getBoundingClientRect();
+      const viewportHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
+      if (rect.top < viewportHeight * 0.92 && rect.bottom > 0) {
+        item.classList.add(visibleClass);
+        return true;
+      }
+
+      return false;
+    };
+
+    const intersectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             // Trigger the CSS transition by adding the visible class
-            entry.target.classList.add("is-visible");
+            entry.target.classList.add(visibleClass);
             // Stop watching once it's revealed — it only needs to animate once
-            observer.unobserve(entry.target);
+            intersectionObserver.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.18 } // reveal when 18% of the element is in view
     );
 
-    revealItems.forEach((item) => observer.observe(item));
+    const observeRevealItems = () => {
+      const revealItems = document.querySelectorAll<Element>("[data-reveal]");
+
+      revealItems.forEach((item) => {
+        if (item.classList.contains(visibleClass) || observedItems.has(item)) {
+          return;
+        }
+
+        observedItems.add(item);
+
+        if (!revealImmediatelyIfVisible(item)) {
+          intersectionObserver.observe(item);
+        }
+      });
+    };
+
+    observeRevealItems();
+
+    const mutationObserver = new MutationObserver(() => {
+      observeRevealItems();
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
 
     // Cleanup: disconnect the old observer before the next effect run
-    return () => observer.disconnect();
+    return () => {
+      intersectionObserver.disconnect();
+      mutationObserver.disconnect();
+    };
   }, [pathname]); // re-run whenever the page route changes
 
   // This component has no visible output

@@ -18,75 +18,64 @@ export default function MembershipPage() {
   return (
     <main id="main-content">
 
-      {/* ── Page Hero (price + features left, card right) ─────────────── */}
+      {/* ── Page Hero ─────────────────────────────────────────────────── */}
       <section className="membership-hero" data-reveal="">
-        <div className="page-hero__content">
+        <div className="membership-hero__content">
           <p className="eyebrow">Monthly Care Club</p>
-          <h1 className="page-hero__title">
-            For owners who want their vehicle consistently clean and protected.
+          <h1 className="membership-hero__title">
+            Keep the clean-car feeling around longer.
           </h1>
-          <p className="page-hero__lede">
-            Designed for clients who want consistent upkeep, easier
-            scheduling, and fewer large reset appointments over time.
+          <p className="membership-hero__lede">
+            A simple maintenance rhythm for drivers who want their vehicle to
+            stay easier to wash, easier to enjoy, and easier to protect.
           </p>
 
-          {/* Large price display */}
-          <div className="membership-price">
-            <span className="membership-price__value">$129/mo</span>
-            <span className="membership-price__note">
-              Pause or cancel when needed
-            </span>
+          <div className="membership-hero__footer">
+            <div className="membership-price">
+              <span className="membership-price__value">$129</span>
+              <span className="membership-price__note">per month</span>
+            </div>
+
+            <Link className="btn btn--lg" href="/booking">
+              Join the Membership
+            </Link>
           </div>
 
-          {/* Quick summary checklist */}
-          <ul className="membership-checklist">
-            <li>Bi-weekly maintenance washes with an interior refresh</li>
-            <li>Priority access to high-demand booking windows</li>
-            <li>
-              Protection top-ups to keep finishes easier to maintain
-            </li>
-            <li>Member pricing on larger enhancement services</li>
-          </ul>
-
-          <Link className="btn btn--lg" href="/booking">
-            Join the Membership
-          </Link>
+          <p className="membership-hero__fine-print">
+            Pause when needed. Best for regularly driven vehicles.
+          </p>
         </div>
 
-        {/* Right card: breakdown of what the monthly cadence includes */}
+        {/* Right card: compact teaser for what comes next */}
         <aside className="membership-hero__card">
-          <h2>What the monthly cadence includes</h2>
-          <ul>
-            <li>
-              <strong>2 regular visits</strong>
-              <span>
-                Exterior wash, wheel reset, interior touch-up, glass clean
-              </span>
-            </li>
-            <li>
-              <strong>1 protection refresh</strong>
-              <span>
-                Sealant maintenance to preserve gloss and easier rinsing
-              </span>
-            </li>
-            <li>
-              <strong>Priority scheduling</strong>
-              <span>
-                Faster rebooking when weather or life shifts your plans
-              </span>
-            </li>
-            <li>
-              <strong>Direct communication</strong>
-              <span>
-                Simple reminders and quick changes without extra friction
-              </span>
-            </li>
-          </ul>
+          <span className="membership-hero__badge">Built for upkeep</span>
+          <h2>A quieter way to stay ahead of buildup.</h2>
+          <p>
+            Members get recurring care, easier scheduling, and small protection
+            refreshes before the vehicle starts feeling neglected.
+          </p>
+          <div className="membership-hero__stats" aria-label="Membership highlights">
+            <div>
+              <strong>2x</strong>
+              <span>regular visits</span>
+            </div>
+            <div>
+              <strong>1x</strong>
+              <span>protection refresh</span>
+            </div>
+          </div>
+          <Link className="membership-hero__scroll-link" href="#membership-perks">
+            See how it works
+          </Link>
         </aside>
       </section>
 
       {/* ── Perks (3-column grid) ─────────────────────────────────────── */}
-      <section className="membership-perks" aria-label="Membership perks">
+      <section
+        id="membership-perks"
+        className="membership-perks"
+        aria-label="Membership perks"
+      >
         <article data-reveal="">
           <p className="eyebrow">Consistency</p>
           <h3>Less buildup, less catch-up work</h3>

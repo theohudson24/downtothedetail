@@ -161,10 +161,6 @@ export default function ServicesPage() {
           <h2 id="services-faq-title" className="section-title">
             The practical details people usually want before committing.
           </h2>
-          <p className="muted-copy">
-            Clear answers upfront make it easier to choose the right service
-            and arrive prepared.
-          </p>
         </div>
 
         <div className="services-faq__list">

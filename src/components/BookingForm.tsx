@@ -122,23 +122,48 @@ export default function BookingForm({
         </div>
       </div>
 
-      <div className="form-section">
-        <h2>3. Vehicle condition</h2>
-        <p>
-          Photos and notes help set expectations before arrival and reduce
-          back-and-forth after the form is submitted.
-        </p>
+      <div className="form-section condition-section">
+        <div className="condition-section__header">
+          <div>
+            <h2>3. Vehicle condition</h2>
+            <p>
+              Photos and notes help set expectations before arrival and reduce
+              back-and-forth after the form is submitted.
+            </p>
+          </div>
 
-        <label className="form-group">
-          <span>Upload photos</span>
-          <input type="file" name="photos" accept="image/*" multiple />
-        </label>
+          <div className="condition-section__chips" aria-label="Helpful note examples">
+            <span>Stains</span>
+            <span>Scratches</span>
+            <span>Pet hair</span>
+            <span>Odors</span>
+          </div>
+        </div>
 
-        <label className="form-group">
+        <div className="condition-grid">
+          <label className="form-group upload-card">
+            <span>Upload photos</span>
+            <small>
+              Add wide shots plus close-ups of areas you want reviewed.
+            </small>
+            <input type="file" name="photos" accept="image/*" multiple />
+          </label>
+
+          <aside className="condition-note">
+            <strong>What helps most?</strong>
+            <ul>
+              <li>Exterior panels with visible scratches or spotting</li>
+              <li>Seats, carpets, cupholders, and high-touch areas</li>
+              <li>Any stain, odor, trim, or wheel concern</li>
+            </ul>
+          </aside>
+        </div>
+
+        <label className="form-group condition-notes">
           <span>Notes or problem areas</span>
           <textarea
             name="notes"
-            placeholder="Mention scratches, stains, odors, pet hair, or any area you want prioritized."
+            placeholder="Example: coffee stain on passenger seat, dog hair in rear cargo area, water spots on hood, or wheels need extra attention."
           />
         </label>
       </div>

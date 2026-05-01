@@ -46,10 +46,29 @@ export default async function BookingPage({
 
         {/* Numbered steps list — CSS counter renders the number circles */}
         <ol className="booking-steps">
-          <li>Pick an upcoming preferred day and time window</li>
-          <li>Select the package and basic vehicle information</li>
           <li>
-            Add photos or notes so the appointment can be scoped better
+            <span>Pick an upcoming preferred day and time window</span>
+            <p>
+              Choose from available dates and the arrival window that fits your
+              schedule best.
+            </p>
+            <small>Calendar-ready</small>
+          </li>
+          <li>
+            <span>Select the package and basic vehicle information</span>
+            <p>
+              Share the service level, year, make, model, and color so the work
+              can be scoped correctly.
+            </p>
+            <small>Service matched</small>
+          </li>
+          <li>
+            <span>Add photos or notes for a better review</span>
+            <p>
+              Point out stains, scratches, pet hair, odors, or anything you
+              want prioritized.
+            </p>
+            <small>Fewer surprises</small>
           </li>
         </ol>
       </section>
