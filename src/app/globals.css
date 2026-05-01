@@ -1,6 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Sans:wght@500;600;700;800&display=swap");
+/*
+  globals.css
+  ─────────────────────────────────────────────────────────────────────────────
+  This is the single global stylesheet for the entire app.
+  It merges the original base.css and about.css from the static site.
 
+  Fonts are loaded by Next.js (next/font/google) in layout.tsx instead of a
+  CSS @import, which avoids an extra network round-trip to Google's CDN and
+  eliminates the flash of unstyled text (FOUT).
+
+  The CSS custom properties (variables) in :root are the design tokens that
+  every component references. Change a value here and it ripples everywhere.
+*/
+
+/* ─── Design Tokens ─────────────────────────────────────────────────────── */
 :root {
+  /* Color palette */
   --bg: #f6f0e8;
   --bg-elevated: rgba(255, 252, 247, 0.78);
   --surface: #fffaf3;
@@ -13,18 +27,30 @@
   --accent-strong: #8f431f;
   --accent-soft: rgba(180, 93, 47, 0.12);
   --success: #285b4f;
+
+  /* Shadows */
   --shadow-sm: 0 10px 24px rgba(29, 26, 23, 0.08);
   --shadow-md: 0 20px 60px rgba(29, 26, 23, 0.12);
   --shadow-lg: 0 32px 90px rgba(29, 26, 23, 0.18);
+
+  /* Border radii */
   --radius-sm: 16px;
   --radius-md: 24px;
   --radius-lg: 36px;
+
+  /*
+    Font families — next/font sets --font-display and --font-body as CSS
+    variables on <html> via class names declared in layout.tsx.
+    These strings are fallbacks for SSR before the font classes are applied.
+  */
   --font-display: "Instrument Sans", "Avenir Next", "Segoe UI", sans-serif;
   --font-body: "Manrope", "Segoe UI", sans-serif;
+
   --max-width: 1180px;
   --header-height: 88px;
 }
 
+/* ─── Global Reset & Base ────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -40,12 +66,14 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--text);
+  /* Warm layered background: two radial accent glows + a linear gradient */
   background:
     radial-gradient(circle at top left, rgba(180, 93, 47, 0.18), transparent 28%),
     radial-gradient(circle at top right, rgba(40, 91, 79, 0.14), transparent 24%),
     linear-gradient(180deg, #f8f3ed 0%, #f3ece3 40%, #f8f3ed 100%);
 }
 
+/* Subtle grid overlay fixed to viewport — purely decorative */
 body::before {
   content: "";
   position: fixed;
@@ -74,16 +102,21 @@ textarea {
   font: inherit;
 }
 
+/* Brand accent color for focus rings (accessibility) */
 :focus-visible {
   outline: 3px solid rgba(180, 93, 47, 0.35);
   outline-offset: 3px;
 }
 
+/* Offset anchor scroll targets so the sticky header doesn't overlap them */
 section[id],
 [id] {
   scroll-margin-top: calc(var(--header-height) + 20px);
 }
 
+/* ─── Utility Classes ────────────────────────────────────────────────────── */
+
+/* Visually hidden but still readable by screen readers */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -96,6 +129,7 @@ section[id],
   border: 0;
 }
 
+/* Appears on :focus so keyboard users can skip to main content */
 .skip-link {
   position: absolute;
   left: 16px;
@@ -113,6 +147,7 @@ section[id],
   top: 16px;
 }
 
+/* Full-height flex shell so the footer sticks to the bottom */
 .page-shell {
   position: relative;
   min-height: 100vh;
@@ -120,15 +155,18 @@ section[id],
   flex-direction: column;
 }
 
+/* ─── Header ─────────────────────────────────────────────────────────────── */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
+  /* Frosted glass effect */
   backdrop-filter: blur(16px);
   background: rgba(246, 240, 232, 0.8);
   border-bottom: 1px solid rgba(79, 57, 34, 0.08);
 }
 
+/* Shared max-width constraint for header and footer content */
 .site-header__inner,
 .site-footer__inner {
   width: min(var(--max-width), calc(100vw - 32px));
@@ -143,6 +181,7 @@ section[id],
   gap: 24px;
 }
 
+/* Brand logo / wordmark */
 .brand {
   display: inline-flex;
   flex-direction: column;
@@ -165,6 +204,7 @@ section[id],
   color: var(--muted);
 }
 
+/* Hamburger button — hidden on desktop, shown on mobile via media query */
 .nav-toggle {
   display: none;
   align-items: center;
@@ -178,6 +218,7 @@ section[id],
   cursor: pointer;
 }
 
+/* The three bars of the hamburger icon, built with pseudo-elements */
 .nav-toggle__bar,
 .nav-toggle__bar::before,
 .nav-toggle__bar::after {
@@ -214,6 +255,17 @@ section[id],
   gap: 16px;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-actions form {
+  margin: 0;
+}
+
+/* Pill-shaped nav container */
 .nav-links {
   display: flex;
   align-items: center;
@@ -242,12 +294,14 @@ section[id],
   outline: none;
 }
 
+/* Active page link gets a filled accent gradient pill */
 .nav-links a[aria-current="page"] {
   color: #fff;
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   box-shadow: 0 12px 24px rgba(180, 93, 47, 0.25);
 }
 
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -274,6 +328,7 @@ section[id],
   outline: none;
 }
 
+/* Ghost / secondary button variant */
 .btn--secondary {
   background: rgba(255, 255, 255, 0.7);
   color: var(--text);
@@ -286,15 +341,18 @@ section[id],
   box-shadow: var(--shadow-sm);
 }
 
+/* Full-width button */
 .btn--block {
   width: 100%;
 }
 
+/* Larger touch target */
 .btn--lg {
   min-height: 54px;
   padding-inline: 1.55rem;
 }
 
+/* ─── Main Content Area ───────────────────────────────────────────────────── */
 main {
   flex: 1;
   width: min(var(--max-width), calc(100vw - 32px));
@@ -302,10 +360,14 @@ main {
   padding: 36px 0 90px;
 }
 
+/* Consistent vertical rhythm between all top-level page sections */
 main > section + section {
   margin-top: clamp(68px, 8vw, 116px);
 }
 
+/* ─── Typography ─────────────────────────────────────────────────────────── */
+
+/* Small uppercase label above headings */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -325,6 +387,7 @@ main > section + section {
   background: currentColor;
 }
 
+/* Shared heading styles across hero and section titles */
 .section-title,
 .hero__title,
 .page-hero__title {
@@ -344,6 +407,7 @@ main > section + section {
   margin-bottom: 28px;
 }
 
+/* Muted text class applied to supporting copy across all pages */
 .section-intro p,
 .hero__lede,
 .page-hero__lede,
@@ -365,6 +429,7 @@ main > section + section {
   color: var(--muted);
 }
 
+/* ─── Shared Card Styles (frosted glass panels) ──────────────────────────── */
 .panel,
 .step,
 .service-card,
@@ -384,6 +449,7 @@ main > section + section {
   backdrop-filter: blur(10px);
 }
 
+/* ─── Homepage Hero ──────────────────────────────────────────────────────── */
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.75fr);
@@ -400,6 +466,7 @@ main > section + section {
   box-shadow: var(--shadow-lg);
 }
 
+/* Common positioning for all hero/page-intro sections */
 .hero__content,
 .page-hero,
 .services-hero,
@@ -412,6 +479,7 @@ main > section + section {
   border-radius: var(--radius-lg);
 }
 
+/* White frosted-glass card that wraps the text content inside each hero */
 .hero__content,
 .page-hero__content,
 .services-hero,
@@ -443,6 +511,7 @@ main > section + section {
   backdrop-filter: blur(10px);
 }
 
+/* Decorative radial glow in the corner of hero/page sections */
 .hero__content::after,
 .page-hero__content::after,
 .services-hero::after,
@@ -479,6 +548,7 @@ main > section + section {
   margin-top: 6px;
 }
 
+/* Image panel on the right side of the homepage hero */
 .hero__media {
   position: relative;
   min-height: 100%;
@@ -493,6 +563,7 @@ main > section + section {
   object-fit: cover;
 }
 
+/* Dark overlay + tinted gradient on hero image */
 .hero__media::after {
   content: "";
   position: absolute;
@@ -502,6 +573,7 @@ main > section + section {
     linear-gradient(135deg, rgba(180, 93, 47, 0.2), transparent 45%);
 }
 
+/* ─── Homepage Highlights (3 feature cards) ──────────────────────────────── */
 .home-highlights {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -527,6 +599,7 @@ main > section + section {
   line-height: 1.6;
 }
 
+/* ─── 3-column grids used across multiple pages ───────────────────────────── */
 .process__steps,
 .services-grid,
 .gallery-grid,
@@ -537,6 +610,7 @@ main > section + section {
   gap: 24px;
 }
 
+/* Shared card padding and hover lift effect */
 .step,
 .service-card,
 .gallery-card,
@@ -559,6 +633,7 @@ main > section + section {
   border-color: rgba(180, 93, 47, 0.28);
 }
 
+/* Small step-number badge */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -574,6 +649,7 @@ main > section + section {
   text-transform: uppercase;
 }
 
+/* Images inside process steps and gallery cards */
 .step img,
 .gallery-card img {
   height: 220px;
@@ -597,6 +673,7 @@ main > section + section {
   margin: 0;
 }
 
+/* ─── CTA Section (Homepage) & Membership Compare ────────────────────────── */
 .cta,
 .membership-compare {
   display: grid;
@@ -620,6 +697,7 @@ main > section + section {
   gap: 18px;
 }
 
+/* Dark card used in CTA and membership compare */
 .cta__card,
 .membership-compare__column {
   padding: clamp(28px, 4vw, 42px);
@@ -641,6 +719,7 @@ main > section + section {
   margin-top: auto;
 }
 
+/* ─── "Good Fit If" sidebar card ─────────────────────────────────────────── */
 .quick-note {
   display: flex;
   flex-direction: column;
@@ -709,6 +788,7 @@ main > section + section {
   min-height: 54px;
 }
 
+/* ─── Page Hero Sections (services, membership, gallery, booking, about) ─── */
 .page-hero,
 .services-hero,
 .membership-hero,
@@ -731,6 +811,7 @@ main > section + section {
   line-height: 1.75;
 }
 
+/* Sidebar panels inside page heroes */
 .services-hero__note,
 .membership-hero__card,
 .booking-steps,
@@ -748,6 +829,7 @@ main > section + section {
   box-shadow: var(--shadow-md);
 }
 
+/* ─── Services Page ───────────────────────────────────────────────────────── */
 .services-hero__note {
   display: flex;
   flex-direction: column;
@@ -820,6 +902,7 @@ main > section + section {
   height: 100%;
 }
 
+/* Featured card has a warmer tinted background */
 .service-card--featured {
   border-color: rgba(180, 93, 47, 0.35);
   background: linear-gradient(180deg, rgba(255, 248, 241, 0.98), rgba(255, 255, 255, 0.75));
@@ -831,6 +914,7 @@ main > section + section {
   font-weight: 800;
 }
 
+/* Bullet lists used on service cards, membership, and booking summary */
 .service-card ul,
 .membership-checklist,
 .membership-inclusions__list ul,
@@ -872,6 +956,7 @@ main > section + section {
   padding-left: 28px;
 }
 
+/* Accent bullet before each list item */
 .service-card li::before,
 .membership-checklist li::before,
 .membership-inclusions__list li::before,
@@ -886,6 +971,7 @@ main > section + section {
   font-weight: 800;
 }
 
+/* ─── Services FAQ ───────────────────────────────────────────────────────── */
 .services-faq {
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   align-items: start;
@@ -901,6 +987,7 @@ main > section + section {
   border-radius: 22px;
 }
 
+/* ─── Gallery Page ───────────────────────────────────────────────────────── */
 .gallery-hero__stats {
   display: grid;
   gap: 14px;
@@ -944,10 +1031,11 @@ main > section + section {
   margin-bottom: 16px;
 }
 
+/* ─── Membership Page ────────────────────────────────────────────────────── */
 .membership-price {
   display: flex;
   flex-wrap: wrap;
-  align-items: end;
+  align-items: flex-end;
   gap: 12px;
   margin: 24px 0;
 }
@@ -986,6 +1074,7 @@ main > section + section {
   border-radius: var(--radius-md);
 }
 
+/* Side-by-side comparison panel */
 .membership-compare__panel {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -994,6 +1083,9 @@ main > section + section {
   padding: 28px 24px;
 }
 
+/* ─── Booking Page ───────────────────────────────────────────────────────── */
+
+/* Numbered steps list in booking hero */
 .booking-steps {
   list-style: none;
   margin: 0;
@@ -1011,6 +1103,7 @@ main > section + section {
   color: var(--muted);
 }
 
+/* CSS counter generates the number badge before each step */
 .booking-steps li::before {
   counter-increment: booking-flow;
   content: counter(booking-flow);
@@ -1029,6 +1122,7 @@ main > section + section {
   font-weight: 800;
 }
 
+/* Two-column form + sticky sidebar layout */
 .booking-layout {
   grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.9fr);
   align-items: start;
@@ -1045,6 +1139,7 @@ main > section + section {
   border-radius: 28px;
 }
 
+/* Grid layouts for calendar, time slots, packages, and vehicle fields */
 .form-grid,
 .booking-calendar,
 .booking-slots,
@@ -1066,6 +1161,7 @@ main > section + section {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
+/* Label wraps input — stacked label + input */
 .form-group {
   display: grid;
   gap: 8px;
@@ -1102,6 +1198,7 @@ main > section + section {
   background: #fff;
 }
 
+/* Selectable card-style radio labels for calendar days, time slots, packages */
 .calendar-day,
 .booking-slots label,
 .package-card {
@@ -1132,6 +1229,7 @@ main > section + section {
   accent-color: var(--accent);
 }
 
+/* Highlight selected radio card with accent border + glow */
 .calendar-day:has(input:checked),
 .booking-slots label:has(input:checked),
 .package-card:has(input:checked) {
@@ -1161,6 +1259,7 @@ main > section + section {
   gap: 4px;
 }
 
+/* Sticky sidebar stays visible while the form scrolls */
 .booking-summary {
   position: sticky;
   top: calc(var(--header-height) + 18px);
@@ -1175,6 +1274,7 @@ main > section + section {
   border-top: 1px solid rgba(79, 57, 34, 0.08);
 }
 
+/* ─── About Page ─────────────────────────────────────────────────────────── */
 .about-intro {
   align-items: center;
 }
@@ -1221,6 +1321,336 @@ main > section + section {
   font-size: 1.5rem;
 }
 
+/* ─── Auth Pages ─────────────────────────────────────────────────────────── */
+.auth-page {
+  display: grid;
+  place-items: start center;
+}
+
+.auth-card {
+  width: min(520px, 100%);
+  display: grid;
+  gap: 24px;
+  padding: clamp(26px, 5vw, 42px);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(79, 57, 34, 0.09);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+}
+
+.auth-card__header,
+.auth-form {
+  display: grid;
+  gap: 16px;
+}
+
+.auth-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+}
+
+.auth-subtitle,
+.auth-footer-text,
+.field-hint,
+.field-optional {
+  color: var(--muted);
+}
+
+.auth-footer-text {
+  margin: 0;
+  text-align: center;
+}
+
+.auth-link {
+  color: var(--accent-strong);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.auth-link:hover,
+.auth-link:focus-visible {
+  text-decoration: underline;
+}
+
+.field-hint {
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.form-error,
+.banner {
+  padding: 0.95rem 1rem;
+  border-radius: 16px;
+  font-weight: 700;
+}
+
+.form-error {
+  margin: 0;
+  background: rgba(143, 31, 31, 0.1);
+  color: #8f1f1f;
+  border: 1px solid rgba(143, 31, 31, 0.16);
+}
+
+.banner {
+  margin-bottom: 24px;
+}
+
+.banner--success {
+  background: rgba(40, 91, 79, 0.12);
+  color: var(--success);
+  border: 1px solid rgba(40, 91, 79, 0.18);
+}
+
+/* ─── Account Dashboard ─────────────────────────────────────────────────── */
+.account-hero,
+.calendar-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 24px;
+  align-items: stretch;
+  padding: clamp(28px, 4vw, 46px);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 240, 0.74)),
+    rgba(255, 255, 255, 0.52);
+  border: 1px solid rgba(79, 57, 34, 0.08);
+  box-shadow: var(--shadow-lg);
+}
+
+.account-hero__text,
+.account-hero__actions,
+.account-section,
+.booking-list,
+.booking-card__details,
+.account-profile-grid,
+.account-details,
+.calendar-hero__legend,
+.day-column__slots {
+  display: grid;
+  gap: 16px;
+}
+
+.account-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 0;
+  color: var(--muted);
+}
+
+.account-hero__meta span {
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
+}
+
+.account-hero__actions {
+  align-content: center;
+  justify-items: stretch;
+}
+
+.account-section__header {
+  max-width: 72ch;
+  margin-bottom: 24px;
+}
+
+.booking-card,
+.account-profile-card,
+.day-column {
+  padding: 24px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(79, 57, 34, 0.09);
+  box-shadow: var(--shadow-md);
+}
+
+.booking-card--past {
+  opacity: 0.82;
+}
+
+.booking-card__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.booking-card__date {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+}
+
+.booking-card__time {
+  margin: 0;
+  color: var(--muted);
+}
+
+.booking-detail {
+  display: grid;
+  gap: 4px;
+}
+
+.booking-detail__label,
+.account-details dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.account-details {
+  margin: 0;
+}
+
+.account-details div {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(79, 57, 34, 0.08);
+}
+
+.account-details div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.account-details dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.status-badge {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.status-pending {
+  background: rgba(180, 93, 47, 0.12);
+  color: var(--accent-strong);
+}
+
+.status-confirmed,
+.status-completed {
+  background: rgba(40, 91, 79, 0.12);
+  color: var(--success);
+}
+
+.status-cancelled {
+  background: rgba(101, 95, 90, 0.12);
+  color: var(--muted);
+}
+
+.cancel-form {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+}
+
+.cancel-btn {
+  min-height: 44px;
+}
+
+/* ─── Availability Calendar ─────────────────────────────────────────────── */
+.calendar-hero__legend {
+  align-content: center;
+  padding: 24px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(79, 57, 34, 0.09);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-dot--available {
+  background: var(--success);
+}
+
+.legend-dot--booked {
+  background: var(--muted);
+}
+
+.calendar-hero__note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.availability-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+}
+
+.day-column__header {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(79, 57, 34, 0.08);
+}
+
+.day-column__date {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.slot-card {
+  display: grid;
+  gap: 5px;
+  min-height: 76px;
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  text-decoration: none;
+  border: 1px solid rgba(79, 57, 34, 0.1);
+}
+
+.slot-card--available {
+  background: rgba(40, 91, 79, 0.1);
+  color: var(--success);
+}
+
+.slot-card--available:hover,
+.slot-card--available:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  outline: none;
+}
+
+.slot-card--booked {
+  background: rgba(101, 95, 90, 0.1);
+  color: var(--muted);
+}
+
+.slot-card__time {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.slot-card__status {
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────── */
 .site-footer {
   padding: 0 0 28px;
 }
@@ -1252,6 +1682,13 @@ main > section + section {
   gap: 16px;
 }
 
+/* ─── Scroll Reveal Animations ──────────────────────────────────────────── */
+/*
+  When the <html> element has the "js" class (added by ClientInit.tsx on mount),
+  [data-reveal] elements start hidden. ClientInit uses IntersectionObserver to
+  add "is-visible" when they scroll into the viewport.
+  Without JS, elements are always visible (no class = no hiding).
+*/
 .js [data-reveal] {
   opacity: 0;
   transform: translateY(24px);
@@ -1263,6 +1700,9 @@ main > section + section {
   transform: translateY(0);
 }
 
+/* ─── Responsive Breakpoints ─────────────────────────────────────────────── */
+
+/* Tablet — collapse two-column hero grids to single column */
 @media (max-width: 1100px) {
   .hero,
   .page-hero,
@@ -1270,6 +1710,8 @@ main > section + section {
   .membership-hero,
   .gallery-hero,
   .booking-hero,
+  .account-hero,
+  .calendar-hero,
   .about-intro,
   .cta,
   .membership-compare,
@@ -1301,6 +1743,7 @@ main > section + section {
   }
 }
 
+/* Mobile nav breakpoint — show hamburger, hide inline nav */
 @media (max-width: 860px) {
   .site-header__inner {
     min-height: 76px;
@@ -1310,6 +1753,7 @@ main > section + section {
     display: inline-flex;
   }
 
+  /* Dropdown nav panel below the header bar */
   .nav-wrap {
     position: absolute;
     top: calc(100% + 10px);
@@ -1325,10 +1769,12 @@ main > section + section {
     box-shadow: var(--shadow-lg);
   }
 
+  /* React Header component toggles this class via state */
   .site-header.is-open .nav-wrap {
     display: flex;
   }
 
+  /* Hamburger → X animation when open */
   .site-header.is-open .nav-toggle__bar {
     transform: rotate(45deg);
   }
@@ -1355,8 +1801,14 @@ main > section + section {
   .nav-wrap .btn {
     width: 100%;
   }
+
+  .nav-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
+/* Small mobile — single column everything */
 @media (max-width: 720px) {
   main {
     width: min(var(--max-width), calc(100vw - 24px));
@@ -1396,6 +1848,7 @@ main > section + section {
   }
 }
 
+/* Extra small — reduce padding on all major panels */
 @media (max-width: 560px) {
   .hero__content,
   .page-hero__content,
@@ -1416,5 +1869,51 @@ main > section + section {
 
   .hero__media img {
     min-height: 260px;
+  }
+}
+
+/* ─── About Page Specific Styles (originally about.css) ─────────────────── */
+
+.about-intro__media {
+  display: flex;
+  justify-content: center;
+}
+
+/* Decorative tilted shape behind the owner photo */
+.about-intro__media::before {
+  content: "";
+  position: absolute;
+  inset: auto auto 8% 12%;
+  width: 120px;
+  height: 120px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(180, 93, 47, 0.2), rgba(40, 91, 79, 0.16));
+  transform: rotate(-10deg);
+}
+
+/* Portrait-style image with aspect ratio and shadow */
+.about-intro__media img {
+  position: relative;
+  z-index: 1;
+  width: min(390px, 100%);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 28px;
+  border: 1px solid rgba(79, 57, 34, 0.1);
+  box-shadow: 0 24px 60px rgba(29, 26, 23, 0.18);
+}
+
+.about-story__card {
+  display: grid;
+  gap: 18px;
+}
+
+.about-story__card p {
+  max-width: 62ch;
+}
+
+@media (max-width: 720px) {
+  .about-intro__media img {
+    width: min(100%, 420px);
   }
 }

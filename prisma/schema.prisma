@@ -1,0 +1,71 @@
+// schema.prisma
+// ─────────────────────────────────────────────────────────────────────────────
+// This file defines the database structure. Every time you change it, run:
+//   npx prisma migrate dev --name <description>   ← creates a migration file + updates DB
+// Or for quick dev iteration (no migration file):
+//   npx prisma db push
+//
+// After any schema change, Prisma regenerates the TypeScript client automatically.
+
+datasource db {
+  provider = "postgresql"
+  // The connection string comes from .env — never hard-code credentials here.
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ─── User ────────────────────────────────────────────────────────────────────
+// One row per customer account. Passwords are never stored in plaintext —
+// only the bcrypt hash is stored in hashedPassword.
+model User {
+  id             String    @id @default(cuid())
+  name           String
+  email          String    @unique           // email is the login identifier
+  hashedPassword String                      // bcrypt hash, NEVER the raw password
+  phone          String?                     // optional, shown on account page
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  bookings       Booking[]
+}
+
+// ─── Booking ──────────────────────────────────────────────────────────────────
+// One row per appointment request. The `status` field drives the workflow:
+//   pending   → submitted, awaiting owner confirmation
+//   confirmed → owner has confirmed the slot
+//   completed → service delivered
+//   cancelled → customer or owner cancelled
+//
+// Dates are stored as "YYYY-MM-DD" strings to avoid timezone complications
+// (the business is local and doesn't need UTC timestamps for dates).
+model Booking {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Scheduling
+  date      String   // "YYYY-MM-DD"
+  timeSlot  String   // "08:00" | "11:30" | "15:00" | "after-hours"
+
+  // Service details
+  package   String   // "signature" | "correction" | "ceramic"
+  make      String
+  model     String
+  year      Int
+  color     String?
+  notes     String?
+
+  // Workflow status — default is "pending" until the owner confirms
+  status    String   @default("pending")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Index on date for fast availability lookups
+  @@index([date])
+  // Index on userId for fast account page queries
+  @@index([userId])
+}
